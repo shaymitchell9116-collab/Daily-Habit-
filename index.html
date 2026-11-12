@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#101713">
+  <meta name="description" content="Your day, your rules, your progress.">
+  <link rel="manifest" href="/manifest.webmanifest">
+  <link rel="icon" href="/icon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/icon-192.png">
+  <link rel="stylesheet" href="/styles.css">
+  <title>Daily Habit</title>
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="Daily Habit home">
+        <span class="brand-mark">D</span>
+        <span>DAILY <b>HABIT</b></span>
+      </a>
+      <button id="notifyBtn" class="icon-button" aria-label="Enable notifications" title="Enable notifications">🔔</button>
+    </header>
+
+    <main>
+      <section class="welcome">
+        <div>
+          <p class="eyebrow" id="todayLabel">YOUR DAY, YOUR RULES</p>
+          <h1>Make today<br><em>count.</em></h1>
+          <p class="subtext">Choose what matters. Show up for it.</p>
+        </div>
+        <div class="date-card">
+          <span id="dayName">MON</span>
+          <strong id="dayNumber">11</strong>
+          <small id="monthName">NOV</small>
+        </div>
+      </section>
+
+      <section class="progress-card">
+        <div class="progress-top">
+          <div>
+            <p class="eyebrow">DAILY PROGRESS</p>
+            <h2><span id="completedCount">0</span><small> / <span id="totalCount">0</span> done</small></h2>
+          </div>
+          <div class="progress-percent" id="progressPercent">0%</div>
+        </div>
+        <div class="progress-track"><div id="progressBar" class="progress-fill"></div></div>
+        <p class="progress-note" id="progressNote">Start with one thing. Build momentum.</p>
+      </section>
+
+      <section class="activity-section">
+        <div class="section-heading">
+          <div>
+            <p class="eyebrow">YOUR PLAN</p>
+            <h2>Today's activities</h2>
+          </div>
+          <button id="addBtn" class="add-button"><span>＋</span> Add activity</button>
+        </div>
+        <div class="filter-row">
+          <button class="filter active" data-filter="all">All <span id="allCount">0</span></button>
+          <button class="filter" data-filter="pending">Pending <span id="pendingCount">0</span></button>
+          <button class="filter" data-filter="done">Done <span id="doneCount">0</span></button>
+        </div>
+        <div id="activityList" class="activity-list"></div>
+        <div id="emptyState" class="empty-state">
+          <div class="empty-icon">＋</div>
+          <h3>Your day is yours to design.</h3>
+          <p>Add your first activity and choose when you want to be reminded.</p>
+          <button id="emptyAddBtn" class="primary-button">Add your first activity</button>
+        </div>
+      </section>
+
+      <section class="bottom-tip">
+        <span class="tip-icon">✳</span>
+        <p><b>Consistency over intensity.</b><br>Small actions, repeated daily, create real change.</p>
+      </section>
+    </main>
+    <footer>DAILY HABIT <span>·</span> BUILT FOR YOUR ROUTINE</footer>
+  </div>
+
+  <dialog id="activityDialog">
+    <form id="activityForm" method="dialog">
+      <div class="dialog-head">
+        <div><p class="eyebrow">MAKE IT YOURS</p><h2 id="dialogTitle">New activity</h2></div>
+        <button type="button" id="closeDialog" class="close-button" aria-label="Close">×</button>
+      </div>
+      <label for="activityName">What do you want to do?</label>
+      <input id="activityName" maxlength="60" placeholder="e.g. Work, Pray, Exercise..." required>
+      <div class="form-grid">
+        <div>
+          <label for="activityTime">Reminder time</label>
+          <input id="activityTime" type="time">
+        </div>
+        <div>
+          <label for="activityRepeat">Repeat</label>
+          <select id="activityRepeat">
+            <option value="daily">Every day</option>
+            <option value="once">Today only</option>
+          </select>
+        </div>
+      </div>
+      <label for="activityNote">Note <span class="optional">(optional)</span></label>
+      <textarea id="activityNote" rows="2" maxlength="160" placeholder="Anything you want to remember..."></textarea>
+      <div class="dialog-actions">
+        <button type="button" id="cancelDialog" class="secondary-button">Cancel</button>
+        <button type="submit" class="primary-button">Save activity</button>
+      </div>
+      <p class="form-footnote">You choose the activity and the time. Nothing is pre-scheduled.</p>
+    </form>
+  </dialog>
+
+  <div id="toast" class="toast" role="status"></div>
+  <script src="/app.js"></script>
+</body>
+</html>
